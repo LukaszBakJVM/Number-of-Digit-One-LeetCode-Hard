@@ -1,7 +1,9 @@
 package net.mojeipdynu;
 
 import java.util.Arrays;
-import java.util.List;
+
+import java.util.function.Function;
+import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,19 +11,12 @@ public class Main {
     }
 
     public int countDigitOne(int n) {
-        if (n < 0) {
-            return 0;
-        }
-        StringBuilder str = new StringBuilder();
-        int count = 0;
-        for (int i = 0; i <= n; i++) {
-            String s = str.append(i).toString();
-            List<String> strings = Arrays.stream(s.split("")).filter(f -> f.equals("1")).toList();
-            count += strings.size();
-            str.setLength(0);
-        }
+        return (int) IntStream.rangeClosed(0,n)
+                .mapToObj(i->Arrays.stream(String.valueOf(i).split("")))
+                .flatMap(Function.identity())
+                .filter(one->one.equals("1"))
+                .count();
 
-        return count;
 
     }
 }
