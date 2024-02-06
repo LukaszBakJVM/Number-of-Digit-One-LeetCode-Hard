@@ -26,5 +26,10 @@ class MainTest {
         int i = main.countDigitOne(22);
         assertEquals(13,i);
     }
+    @Test
+    public void countDigitOneFor100(){
+        int i = main.countDigitOne(100);
+        assertEquals(21,i);
+    }
 
 }
